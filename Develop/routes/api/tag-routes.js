@@ -8,14 +8,19 @@ router.get('/', async (req, res) => {
   // be sure to include its associated Product data
   try {
     const productTag = await ProductTag.findAll();
-    res.status(200).json(locationData); 
+    res.status(200).json(productTag); 
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
+  try {
+
+  } catch (err) {
+
+  }
   // be sure to include its associated Product data
   
 });

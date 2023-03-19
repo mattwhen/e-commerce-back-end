@@ -1,6 +1,7 @@
 // Define our Models in sequelize here: 
 // In this case, we are defining our Models by 
 // Extending Model and calling init(attributes, options)
+// Models are an abstraction that represents a table in our database. In sequelize, it is a class that extends Model.
 const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection.js');
@@ -26,7 +27,7 @@ Category.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'category', // Choose the model name
+    modelName: 'category', // Choose the model (table) name
   }
 );
 
