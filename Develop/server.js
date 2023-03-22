@@ -6,6 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3005;
 
 app.use(express.json());
+// Used to access information coming from forms. 
 app.use(express.urlencoded({ extended: true }));
 
 // Turn on our routes
