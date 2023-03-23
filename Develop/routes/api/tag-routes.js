@@ -17,7 +17,9 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
   try {
-
+    const productTag = await ProductTag.findByPk(req.params.id, {
+      include: [{model: Product}]
+    })
   } catch (err) {
 
   }
@@ -27,14 +29,28 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new tag
+  
 });
 
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async(req, res) => {
   // delete on tag by its `id` value
+  try {
+    const productTag = await ProductTag.destroy({
+      where: {
+        id: req.params.id,
+      }
+    });
+    if(!productTag) {
+      res.status(404).json({message: 'no user found'})
+    };
+  }
+  catch {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
