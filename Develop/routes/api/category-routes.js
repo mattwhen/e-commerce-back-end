@@ -41,9 +41,9 @@ router.get("/:id", async (req, res) => {
 
 // Create a category
 router.post("/", async (req, res) => {
-  // create a new category
   try {
     const categoriesData = await Category.create(req.body);
+    console.log('this is req.body', req.body);
     res.status(200).json(categoriesData);
   }
   catch {
@@ -53,21 +53,15 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
 // update a category by its `id` value
- Category.update(
-  {
-    category_name: req.body.category_name,
-  },
-  {
+ try {
+  const userData = await Category.update(req.body, {
     where: {
-      id: req.params.id,
-    },
-  }
- ) .then((updatedCategory) => {
-  res.json(updatedCategory);
- }).catch((err) => {
-  console.log(err);
-  res.json(err);
- });
+      id: req.params.id
+    }
+  })
+ } catch {
+    res.status(400).json(err);
+ }
 });
 
 router.delete("/:id", async (req, res) => {
